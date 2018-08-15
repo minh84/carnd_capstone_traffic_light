@@ -1,0 +1,10 @@
+.DS_Store
+dataset-sdcnd-capstone/
+__pycache__/
+.ipynb_checkpoints/
+object_detection/protos/*.py
+
+*.record
+models_zoo
+*.pyc
+
