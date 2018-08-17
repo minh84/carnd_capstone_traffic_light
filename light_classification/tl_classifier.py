@@ -68,15 +68,8 @@ class TLClassifier(object):
         """
         # TODO implement light color prediction
         # run the detection
-        (boxes, classes, scores) = self.session.run(
-            [self.detection_boxes, self.detection_classes, self.detection_scores],
-            feed_dict = {
-                self.image_tensor : np.expand_dims(image_rgb, axis=0)
-            }
-        )
+        _, classes, scores = self.get_detections(image_rgb)
 
-        classes = np.squeeze(classes).astype(np.int32)
-        scores = np.squeeze(scores)
 
         # we get the one give maximum score
         i_max_score = np.argmax(scores)
@@ -84,3 +77,19 @@ class TLClassifier(object):
             return classes[i_max_score]
 
         return 4
+
+    def get_detections(self, image_rgb):
+        (boxes, classes, scores) = self.session.run(
+            [self.detection_boxes,
+             self.detection_classes,
+             self.detection_scores],
+            feed_dict={
+                self.image_tensor: np.expand_dims(image_rgb, axis=0)
+            }
+        )
+
+        boxes = np.squeeze(boxes)
+        classes = np.squeeze(classes).astype(np.int32)
+        scores = np.squeeze(scores)
+
+        return boxes, classes, scores
