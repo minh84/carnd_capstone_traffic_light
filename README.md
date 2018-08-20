@@ -81,3 +81,43 @@ We measure the following metrics for both simulator and real data
 
 The analysis is done in the notebook `notebooks`, we obtain the following result
 
+### With CPU only
+For sim dataset
+
+|  metric    | ssd_mobilenet_v1_coco | ssd_inception_v2_coco | faster_rcnn_resnet101_coco |
+| ---: | :---: | :---: | :---: |
+| accuracy | 97.47% | 97.11%  | 98.92% |
+| min runtime | 64  | 100     | 1554 |
+| max runtime | 90  | 149     | 1932 |
+| mean runtime | 69 | 110     | 1598 |
+
+And for real dataset
+
+|  metric    | ssd_mobilenet_v1_coco | ssd_inception_v2_coco | faster_rcnn_resnet101_coco |
+| ---: | :---: | :---: | :---: |
+| accuracy | 98.11% | 96.86%  | 100% |
+| min runtime | 71  | 107     | 4566 |
+| max runtime | 93  | 135     | 5200 |
+| mean runtime | 82 | 118     | 4660 |
+
+### With GPU
+
+For sim dataset
+
+|  metric    | ssd_mobilenet_v1_coco | ssd_inception_v2_coco | faster_rcnn_resnet101_coco |
+| ---: | :---: | :---: | :---: |
+| accuracy | 97.47% | 97.11%  | 98.92% |
+| min runtime | 10  | 14     | 51 |
+| max runtime | 25  | 29     | 70 |
+| mean runtime | 12 | 16     | 56 |
+
+And for real dataset
+
+|  metric    | ssd_mobilenet_v1_coco | ssd_inception_v2_coco | faster_rcnn_resnet101_coco |
+| ---: | :---: | :---: | :---: |
+| accuracy | 98.11% | 96.86%  | 100% |
+| min runtime | 11  | 15     | 108 |
+| max runtime | 20  | 30     | 124 |
+| mean runtime | 13 | 17     | 114 |
+
+With above result, we should use `ssd_mobilenet_v1_coco` if we only have CPU, and `faster_rcnn_resnet101_coco` for GPU.
